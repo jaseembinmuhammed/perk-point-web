@@ -1,6 +1,7 @@
 export type Employee = {
-    id : number,
-    name : string,
-    department:string,
-    email:string
-}
+    userId: number;
+    id: number;
+    title: string;
+    completed: boolean;
+  };
+  

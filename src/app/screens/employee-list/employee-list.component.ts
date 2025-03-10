@@ -1,8 +1,9 @@
-import {AfterViewInit, Component, inject, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, inject, OnInit, ViewChild} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import { EmployeeService } from '../../services/employee.service';
+import { catchError, of } from 'rxjs';
 
 /**
  * @title Table with pagination
@@ -13,21 +14,34 @@ import { EmployeeService } from '../../services/employee.service';
   templateUrl: './employee-list.component.html',
   styleUrl: './employee-list.component.scss'
 })
-export class EmployeeListComponent  implements AfterViewInit {
+export class EmployeeListComponent  implements OnInit {
 
   employeeService = inject(EmployeeService);
 
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource<PeriodicElement>([]);
+  dataSource = new MatTableDataSource<Todo>([]);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    setTimeout(()=>{
-      this.dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-    },3000)
+ 
+  ngOnInit(): void {
+    this.employeeService.getEmployeeList().pipe( catchError(err=>{
+      console.log(err);
+      return of([]); 
+    })).subscribe(list=>{
+      this.dataSource = new MatTableDataSource<Todo>(list);
+      this.dataSource.paginator = this.paginator;
+      console.log(list);
+    })
   }
+
   
+}
+
+interface Todo {
+  userId: number;
+  id: number;
+  title: string;
+  completed: boolean;
 }
 
 export interface PeriodicElement {
