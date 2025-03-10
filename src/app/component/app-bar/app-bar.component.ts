@@ -5,14 +5,14 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-app-bar',
-  imports: [MatIconModule,MatTooltipModule,RouterLink,RouterLinkActive],
+  imports: [MatIconModule, MatTooltipModule, RouterLink, RouterLinkActive],
   templateUrl: './app-bar.component.html',
-  styleUrl: './app-bar.component.scss'
+  styleUrl: './app-bar.component.scss',
 })
 export class AppBarComponent {
-   constructor(private router:Router){}
+  constructor(private router: Router) {}
 
-   onLogout(){
+  onLogout() {
     this.router.navigate(['/login']);
-   }
+  }
 }

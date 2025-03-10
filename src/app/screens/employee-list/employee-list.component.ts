@@ -4,13 +4,14 @@ import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import { EmployeeService } from '../../services/employee.service';
 import { catchError, of } from 'rxjs';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 /**
  * @title Table with pagination
  */
 @Component({
   selector: 'app-employee-list',
-  imports: [MatTableModule,MatPaginatorModule,MatButtonModule],
+  imports: [MatTableModule,MatPaginatorModule,MatButtonModule,MatTooltipModule],
   templateUrl: './employee-list.component.html',
   styleUrl: './employee-list.component.scss'
 })
