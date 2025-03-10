@@ -5,10 +5,12 @@ import { RootComponent } from './root/root.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet,LoginComponent],
+  imports: [RouterOutlet, LoginComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
   title = 'Bismillah';
 }
+
+// http://localhost:8080/perkpoint/api/swagger-ui/index.html#/
