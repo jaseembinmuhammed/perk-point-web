@@ -1,0 +1,30 @@
+.title {
+  //   color: red;
+  font-size: 14px;
+  font-weight: 600;
+}
+.form-area {
+  //   background-color: red;
+  width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 10px;
+}
+
+::ng-deep
+  .mdc-text-field--outlined
+  .mdc-notched-outline
+  .mdc-notched-outline__leading {
+  border-top-left-radius: var(--mdc-shape-small, 5px) !important;
+  border-bottom-left-radius: var(--mdc-shape-small, 5px) !important;
+}
+
+// change input right side border-radius
+::ng-deep
+  .mdc-text-field--outlined
+  .mdc-notched-outline
+  .mdc-notched-outline__trailing {
+  border-top-right-radius: var(--mdc-shape-small, 5px) !important;
+  border-bottom-right-radius: var(--mdc-shape-small, 5px) !important;
+}

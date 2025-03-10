@@ -1,43 +1,66 @@
 /* You can add global styles to this file, and also import other style files */
 /* Remove default padding and margin */
-@use '@angular/material' as mat;
+@use "@angular/material" as mat;
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box; /* Ensures padding and border are included in element's total width/height */
-  }
-  
-  /* Optionally reset other elements */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Ensures padding and border are included in element's total width/height */
+}
+
+/* Optionally reset other elements */
 //   body, h1, h2, h3, h4, h5, h6, p, ul, ol, li, figure, figcaption, blockquote, dl, dd {
 //     margin: 0;
 //     padding: 0;
 //   }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
-
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 .test-class {
-  @include mat.theme((
-    // color: mat.$violet-palette,
-    // typography: Roboto,
-    density: -3,
-  ));
+  @include mat.theme(
+    (
+      // color: mat.$violet-palette,
+      // typography: Roboto,
+      density: -3
+    )
+  );
+}
+
+.test-class2 {
+  @include mat.theme(
+    (
+      // color: mat.$violet-palette,
+      // typography: Roboto,
+      density: -2
+    )
+  );
+}
+
+.full-width {
+  width: 100%;
 }
 
 :root {
-  @include mat.table-overrides((
-    background-color: #ffffff,
-    header-headline-color: #003E59,
-    row-item-outline-width:.1px,
-    row-item-outline-color:rgb(208, 208, 208),
-    header-headline-size:12px,
-    header-headline-weight:600
-  ));
-  @include mat.paginator-overrides((
-    container-background-color: rgb(255, 255, 255),
-    container-size:10px
-  ));
+  @include mat.table-overrides(
+    (
+      background-color: #ffffff,
+      header-headline-color: #003e59,
+      row-item-outline-width: 0.1px,
+      row-item-outline-color: rgb(208, 208, 208),
+      header-headline-size: 12px,
+      header-headline-weight: 600,
+    )
+  );
+  @include mat.paginator-overrides(
+    (
+      container-background-color: rgb(255, 255, 255),
+      container-size: 10px,
+    )
+  );
 }
-

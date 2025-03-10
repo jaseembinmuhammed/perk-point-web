@@ -26,7 +26,9 @@
     </table>
   </div>
   <div class="paginator-container">
-    <div class="button" matTooltip="Create New Employee">New Employee</div>
+    <div class="button" matTooltip="Create New Employee" (click)="openDialog()">
+      New Employee
+    </div>
     <mat-paginator
       [pageSizeOptions]="[10, 20, 30]"
       aria-label="Select page of periodic elements"

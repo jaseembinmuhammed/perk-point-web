@@ -1,23 +1,38 @@
 <div class="container">
-    <header class="header">
-      <h1>PERKPOINT</h1>
-    </header>
-    <form class="example-form">
-        <mat-form-field class="example-full-width test-class" appearance="outline">
-          <mat-label>User Name</mat-label>
-          <input matInput placeholder="Enter the user name" >
-          <mat-icon matPrefix (click)="onEditClick()" class="icon">person_outline</mat-icon>
-        </mat-form-field>
-      
-        <mat-form-field class="example-full-width test-class" appearance="outline">
-          <mat-label>Password</mat-label>
-          <input matInput placeholder="Enter the password" app [type]="hide ? 'password' : 'text'">
-          <mat-icon matPrefix (click)="onEditClick()" class="icon">lock_outline</mat-icon>
-          <mat-icon matSuffix (click)="hide = !hide">{{ hide ? 'visibility_off' :'visibility'  }}</mat-icon>
-        </mat-form-field>
-      </form>
-      <button mat-flat-button class="button" [disabled]="loading" (click)="onSubmit()">
-        {{ loading ? 'LOGGING IN...' : 'LOGIN' }}
-      </button>
-  
-  </div>
+  <header class="header">
+    <h1>PERKPOINT</h1>
+  </header>
+  <form class="example-form">
+    <mat-form-field class="example-full-width test-class" appearance="outline">
+      <mat-label>User Name</mat-label>
+      <input matInput placeholder="Enter the user name" />
+      <mat-icon matPrefix (click)="onEditClick()" class="icon"
+        >person_outline</mat-icon
+      >
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width test-class" appearance="outline">
+      <mat-label>Password</mat-label>
+      <input
+        matInput
+        placeholder="Enter the password"
+        app
+        [type]="hide ? 'password' : 'text'"
+      />
+      <mat-icon matPrefix (click)="onEditClick()" class="icon"
+        >lock_outline</mat-icon
+      >
+      <mat-icon matSuffix (click)="hide = !hide">{{
+        hide ? "visibility_off" : "visibility"
+      }}</mat-icon>
+    </mat-form-field>
+  </form>
+  <button
+    mat-flat-button
+    class="button"
+    [disabled]="loading"
+    (click)="onSubmit()"
+  >
+    {{ loading ? "LOGGING IN..." : "LOGIN" }}
+  </button>
+</div>
