@@ -1,0 +1,16 @@
+<div class="header-container">
+    <header class="header">
+        <h1>PERKPOINT</h1>
+    </header>
+    <div class="header-right">
+        <div routerLinkActive="menu-button-active" class="menu-button" routerLink="/employees" matTooltip="Open Employees Screen">
+            <h1 class="menu">Employees</h1>
+        </div>
+        <div routerLinkActive="menu-button-active" class="menu-button" routerLink="/rewards" matTooltip="Open Rewards Screen" >
+            <h1 class="menu">Rewards</h1>
+        </div>
+        <div class="logout" (click)="onLogout()" matTooltip="Logout">
+            <mat-icon  fontIcon="logout" ></mat-icon>
+        </div>
+    </div>
+</div>

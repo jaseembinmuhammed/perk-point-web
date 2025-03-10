@@ -1,0 +1,9 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Full viewport height */
+    width: 100vw;
+    // justify-content: center;
+    // align-items: center;
+    background-color: #ffffff;
+}
