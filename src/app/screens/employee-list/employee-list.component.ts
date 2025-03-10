@@ -1,7 +1,8 @@
-import {AfterViewInit, Component, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, inject, ViewChild} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
+import { EmployeeService } from '../../services/employee.service';
 
 /**
  * @title Table with pagination
@@ -13,14 +14,20 @@ import {MatTableDataSource, MatTableModule} from '@angular/material/table';
   styleUrl: './employee-list.component.scss'
 })
 export class EmployeeListComponent  implements AfterViewInit {
+
+  employeeService = inject(EmployeeService);
+
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  dataSource = new MatTableDataSource<PeriodicElement>([]);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+    setTimeout(()=>{
+      this.dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+    },3000)
   }
+  
 }
 
 export interface PeriodicElement {
