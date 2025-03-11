@@ -6,17 +6,18 @@ import { EmployeeListComponent } from './screens/employee-list/employee-list.com
 import { RewardListComponent } from './screens/reward-list/reward-list.component';
 import { AuthGuard } from './guard/auth.guard';
 import { LoginGuard } from './guard/login.guard';
+import { MyRewardComponent } from './screens/my-reward/my-reward.component';
 
 export const routes: Routes = [
   {
     path: '',
     component: LoginComponent,
-    // canActivate: [LoginGuard],
+    canActivate: [LoginGuard],
   },
   {
     path: 'app_layout',
     component: LayoutComponent,
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     children: [
       {
         path: 'employees',
@@ -25,6 +26,10 @@ export const routes: Routes = [
       {
         path: 'rewards',
         component: RewardListComponent,
+      },
+      {
+        path: 'my_rewards',
+        component: MyRewardComponent,
       },
     ],
   },

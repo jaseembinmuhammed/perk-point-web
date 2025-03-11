@@ -1,24 +1,62 @@
 <div class="example-container mat-elevation-z8">
   <div class="table-container">
     <table mat-table [dataSource]="dataSource">
-      <ng-container matColumnDef="position">
-        <th mat-header-cell *matHeaderCellDef>NO.</th>
-        <td mat-cell *matCellDef="let element">{{ element.userId }}</td>
+      <ng-container matColumnDef="employeeName">
+        <th mat-header-cell *matHeaderCellDef>Employee Name</th>
+        <td mat-cell *matCellDef="let element">{{ element.employeeName }}</td>
       </ng-container>
 
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef>NAME</th>
-        <td mat-cell *matCellDef="let element">{{ element.title }}</td>
+      <ng-container matColumnDef="department">
+        <th mat-header-cell *matHeaderCellDef>Department</th>
+        <td mat-cell *matCellDef="let element">{{ element.department }}</td>
       </ng-container>
 
-      <ng-container matColumnDef="weight">
-        <th mat-header-cell *matHeaderCellDef>WEIGHT</th>
-        <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef>Email ID</th>
+        <td mat-cell *matCellDef="let element">{{ element.email }}</td>
       </ng-container>
 
-      <ng-container matColumnDef="symbol">
-        <th mat-header-cell *matHeaderCellDef>SYMBOL</th>
-        <td mat-cell *matCellDef="let element">{{ element.completed }}</td>
+      <ng-container matColumnDef="numberOfRewards">
+        <th mat-header-cell *matHeaderCellDef>Number Of Rewards</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.numberOfRewards }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="details">
+        <th mat-header-cell *matHeaderCellDef>Details</th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button aria-label="Example icon-button with a menu">
+            <mat-icon>visibility</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef>Action</th>
+        <td mat-cell *matCellDef="let element">
+          <button
+            mat-icon-button
+            [matMenuTriggerFor]="menu"
+            aria-label="Example icon-button with a menu"
+          >
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="openDialog()">
+              <mat-icon>dialpad</mat-icon>
+              <span>Redial</span>
+            </button>
+            <button mat-menu-item disabled>
+              <mat-icon>voicemail</mat-icon>
+              <span>Check voice mail</span>
+            </button>
+            <button mat-menu-item>
+              <mat-icon>notifications_off</mat-icon>
+              <span>Disable alerts</span>
+            </button>
+          </mat-menu>
+        </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>

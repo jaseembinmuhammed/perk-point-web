@@ -15,6 +15,9 @@ import { catchError, of } from 'rxjs';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialog } from '@angular/material/dialog';
 import { AddEmployeeComponent } from '../../component/add-employee/add-employee.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { TransformedEmployeeRewards } from '../../model/employee.type';
 
 /**
  * @title Table with pagination
@@ -24,16 +27,25 @@ import { AddEmployeeComponent } from '../../component/add-employee/add-employee.
   imports: [
     MatTableModule,
     MatPaginatorModule,
-    MatButtonModule,
     MatTooltipModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatIconModule,
   ],
   templateUrl: './employee-list.component.html',
   styleUrl: './employee-list.component.scss',
 })
 export class EmployeeListComponent implements OnInit {
   employeeService = inject(EmployeeService);
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource<Todo>([]);
+  displayedColumns: string[] = [
+    'employeeName',
+    'department',
+    'email',
+    'numberOfRewards',
+    'details',
+    'action',
+  ];
+  dataSource = new MatTableDataSource<TransformedEmployeeRewards>([]);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -55,6 +67,20 @@ export class EmployeeListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // this.employeeService
+    //   .getTodod()
+    //   .pipe(
+    //     catchError((err) => {
+    //       console.log(err);
+    //       return of([]);
+    //     })
+    //   )
+    //   .subscribe((list) => {
+    //     this.dataSource = new MatTableDataSource<Todo>(list);
+    //     this.dataSource.paginator = this.paginator;
+    //     console.log(list);
+    //   });
+
     this.employeeService
       .getEmployeeList()
       .pipe(
@@ -64,11 +90,28 @@ export class EmployeeListComponent implements OnInit {
         })
       )
       .subscribe((list) => {
-        this.dataSource = new MatTableDataSource<Todo>(list);
+        let transformedData: TransformedEmployeeRewards[] =
+          this.employeeService.TransformData(list);
+        this.dataSource = new MatTableDataSource<TransformedEmployeeRewards>(
+          transformedData
+        );
         this.dataSource.paginator = this.paginator;
-        console.log(list);
       });
   }
+
+  // ngOnInit(): void {
+  //   this.employeeService
+  //     .getEmployeeList()
+  //     .pipe(
+  //       catchError((err) => {
+  //         console.log(err);
+  //         return of([]);
+  //       })
+  //     )
+  //     .subscribe((list) => {
+  //       console.log(list);
+  //     });
+  // }
 }
 
 interface Todo {

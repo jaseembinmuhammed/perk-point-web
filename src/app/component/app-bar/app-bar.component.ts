@@ -13,6 +13,7 @@ export class AppBarComponent {
   constructor(private router: Router) {}
 
   onLogout() {
+    localStorage.removeItem('authToken');
     this.router.navigate(['/']);
   }
 }

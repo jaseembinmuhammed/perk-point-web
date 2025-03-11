@@ -71,7 +71,15 @@ export class LoginComponent {
           })
         )
         .subscribe((authResponse: AuthResponse) => {
-          console.log(authResponse.principal.roles);
+          if (authResponse?.principal?.roles?.includes('ADMIN')) {
+            localStorage.setItem('authToken', JSON.stringify(authResponse));
+            this.router.navigate(['/app_layout/employees']);
+          } else if (authResponse?.principal?.roles?.includes('EMPLOYEE')) {
+            localStorage.setItem('authToken', JSON.stringify(authResponse));
+            this.router.navigate(['/app_layout/my_rewards']);
+          } else {
+            this._snackBar.open('Invalid User Account', 'close');
+          }
         });
     }
   }
