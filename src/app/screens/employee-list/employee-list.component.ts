@@ -23,6 +23,7 @@ import {
 } from '../../model/employee.type';
 import { EmployeeDetailsComponent } from '../../component/employee-details/employee-details.component';
 import { AssignRewardComponent } from '../../component/assign-reward/assign-reward.component';
+import { DeleteEmployeeComponent } from '../../component/delete-employee/delete-employee.component';
 
 /**
  * @title Table with pagination
@@ -58,6 +59,7 @@ export class EmployeeListComponent implements OnInit {
   readonly dialog = inject(MatDialog);
   readonly detailsDialog = inject(MatDialog);
   readonly assignRewardDialog = inject(MatDialog);
+  readonly deleteEmployeeDialog = inject(MatDialog);
 
   showDetails(item: TransformedEmployeeRewards): void {
     const detailsDialogRef = this.detailsDialog.open(EmployeeDetailsComponent, {
@@ -139,6 +141,21 @@ export class EmployeeListComponent implements OnInit {
           transformedData
         );
         this.dataSource.paginator = this.paginator;
+      });
+  }
+
+  onDelete(item: TransformedEmployeeRewards): void {
+    const deleteEmployeeDialogRef = this.deleteEmployeeDialog.open(
+      DeleteEmployeeComponent,
+      { data: item }
+    );
+    deleteEmployeeDialogRef
+      .afterClosed()
+      .subscribe((result: TransformedEmployeeRewards) => {
+        console.log(result.empId);
+        const tableData = [...this.dataSource.data];
+        let filteredData = tableData.filter((row) => row.empId != result.empId);
+        this.dataSource.data = filteredData;
       });
   }
 }

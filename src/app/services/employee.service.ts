@@ -28,6 +28,11 @@ export class EmployeeService {
     return this.http.post<Employee>(url, payload);
   }
 
+  deleteEmployee(payload: number) {
+    const url = `http://localhost:8080/perkpoint/api/v1/employee/${payload}`;
+    return this.http.delete<Employee>(url);
+  }
+
   TransformData(
     employeeRewardsList: EmployeeRewards[]
   ): TransformedEmployeeRewards[] {
