@@ -1,5 +1,4 @@
 import {
-  AfterViewInit,
   Component,
   inject,
   model,
@@ -77,16 +76,27 @@ export class EmployeeListComponent implements OnInit {
   }
 
   assignReward(element: TransformedEmployeeRewards): void {
-    // console.log(element, 'el');
     const assignReawardDialogRef = this.detailsDialog.open(
       AssignRewardComponent,
-      {
-        data: element,
-      }
+      { data: element }
     );
-    assignReawardDialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed', result);
-    });
+    assignReawardDialogRef
+      .afterClosed()
+      .subscribe((result: AssignRewardResponse) => {
+        const awardedEmployeeId = result.employee.id;
+        const tableData = [...this.dataSource.data];
+        let updatedTableData = tableData.map(
+          (row: TransformedEmployeeRewards) => {
+            if (row.empId === awardedEmployeeId) {
+              row.numberOfRewards += 1;
+              row.rewards.push(result.reward);
+              return row;
+            }
+            return row;
+          }
+        );
+        this.dataSource.data = [...updatedTableData];
+      });
   }
 
   openDialog(): void {

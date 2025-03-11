@@ -15,7 +15,7 @@ export interface Employee {
 export interface Reward {
   id: number;
   name: string;
-  createdAt: string;
+  rewardedTime: string;
 }
 
 export interface EmployeeRewards {

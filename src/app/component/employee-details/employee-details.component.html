@@ -22,7 +22,7 @@
     <div class="award-avatar">{{ award.name.charAt(0) }}</div>
     <div class="award-details">
       <h3>{{ award.name }}</h3>
-      <h5>Awarded On : {{ award.createdAt | date : "d MMMM y" }}</h5>
+      <h5>Awarded On : {{ award.rewardedTime | date : "d MMMM y" }}</h5>
       <!-- <h4>{{ award.createdAt | date : "medium" }}</h4> -->
     </div>
   </div>
