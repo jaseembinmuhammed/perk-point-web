@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateRewardComponent } from '../../component/create-reward/create-reward.component';
 import { DeleteRewardComponent } from '../../components/delete-reward/delete-reward.component';
+import { UpdateRewardComponent } from '../../components/update-reward/update-reward.component';
 
 @Component({
   selector: 'app-reward-list',
@@ -36,6 +37,7 @@ export class RewardListComponent implements OnInit {
 
   readonly creareRewardDialog = inject(MatDialog);
   readonly deleteRewardDialog = inject(MatDialog);
+  readonly updateRewardDialog = inject(MatDialog);
 
   rewardService = inject(RewardService);
   loading = false;
@@ -93,5 +95,24 @@ export class RewardListComponent implements OnInit {
     });
   }
 
-  onEdit(item: Reward) {}
+  onEdit(item: Reward) {
+    const updateRewardDialogRef = this.updateRewardDialog.open(
+      UpdateRewardComponent,
+      { data: item }
+    );
+    updateRewardDialogRef.afterClosed().subscribe((result: Reward) => {
+      if (result !== undefined && result?.id) {
+        console.log('updated', result);
+        const tableData = [...this.dataSource.data];
+        let updatedTableData = tableData.map((row) => {
+          if (row.id === result.id) {
+            row.name = result.name;
+            return row;
+          }
+          return row;
+        });
+        this.dataSource.data = updatedTableData;
+      }
+    });
+  }
 }
