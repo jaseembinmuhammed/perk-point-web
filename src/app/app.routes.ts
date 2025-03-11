@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { LoginComponent } from './screen/login/login.component';
+import { LoginComponent } from './screens/login/login.component';
 import { RootComponent } from './root/root.component';
 import { LayoutComponent } from './layout/layout.component';
 import { EmployeeListComponent } from './screens/employee-list/employee-list.component';
