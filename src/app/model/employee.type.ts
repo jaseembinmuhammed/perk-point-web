@@ -31,3 +31,14 @@ export interface TransformedEmployeeRewards {
   numberOfRewards: number;
   rewards: Reward[];
 }
+
+export interface AssignRewardResponse {
+  reward: Reward;
+  employee: Employee;
+  rewardedOn: Date;
+}
+
+export interface KeyValue {
+  key: number;
+  value: string;
+}

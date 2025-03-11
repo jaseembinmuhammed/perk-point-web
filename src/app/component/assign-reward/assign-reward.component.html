@@ -1,0 +1,37 @@
+<h1 mat-dialog-title class="title">Assign Reward</h1>
+@if (loading) {
+<mat-progress-bar mode="indeterminate"></mat-progress-bar>
+}
+<mat-dialog-content class="mat-typography">
+  <form class="example-form" [formGroup]="loginForm">
+    <!-- Emp Name -->
+    <mat-form-field class="example-full-width test-class" appearance="outline">
+      <mat-label>Employee Name</mat-label>
+      <input
+        matInput
+        formControlName="emplyeeName"
+        placeholder="Enter the name"
+        [disabled]="true"
+      />
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width test-class" appearance="outline">
+      <mat-label>Select The Reward</mat-label>
+      <mat-select formControlName="awardId">
+        @for (reward of rewardList; track reward.key) {
+        <mat-option [value]="reward.key">{{ reward.value }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close [disabled]="loading">CANCEL</button>
+  <button
+    mat-button
+    (click)="onSubmit()"
+    [disabled]="loading || loginForm.invalid"
+  >
+    SUBMIT
+  </button>
+</mat-dialog-actions>

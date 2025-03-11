@@ -43,7 +43,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class AddEmployeeComponent {
   readonly dialogRef = inject(MatDialogRef<AddEmployeeComponent>);
   readonly data = inject<DialogData>(MAT_DIALOG_DATA);
-  readonly animal = model(this.data.animal);
+  readonly animal = model(this.data.name);
   loading = false;
   employeeService = inject(EmployeeService);
   private _snackBar = inject(MatSnackBar);
@@ -86,7 +86,6 @@ export class AddEmployeeComponent {
 }
 
 export interface DialogData {
-  animal: string;
   name: string;
   email: string;
   rewards: Reward[];
