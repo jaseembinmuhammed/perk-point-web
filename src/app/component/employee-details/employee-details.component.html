@@ -1,0 +1,33 @@
+<div mat-dialog-title class="header top-margin">
+  <div class="profile">J</div>
+  <div class="details-section">
+    <h1 class="name">Name : {{ data.name }}</h1>
+    <h1 class="email">Email : {{ data.email }}</h1>
+  </div>
+</div>
+<div mat-dialog-title class="header">
+  <h1 class="name">Department</h1>
+  <h1 class="label">&nbsp;: Department</h1>
+</div>
+<div mat-dialog-title class="header">
+  <h1 class="name under-line">Rewards</h1>
+</div>
+<mat-dialog-content class="mat-typography">
+  @if (!data.rewards || data.rewards.length === 0) {
+  <div class="no-awards">
+    <h5>No Rewards</h5>
+  </div>
+  } @for (award of data.rewards; track award.id) {
+  <div class="award-container">
+    <div class="award-avatar">{{ award.name.charAt(0) }}</div>
+    <div class="award-details">
+      <h3>{{ award.name }}</h3>
+      <h5>Awarded On : {{ award.createdAt | date : "d MMMM y" }}</h5>
+      <!-- <h4>{{ award.createdAt | date : "medium" }}</h4> -->
+    </div>
+  </div>
+  }
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>CLOSE</button>
+</mat-dialog-actions>

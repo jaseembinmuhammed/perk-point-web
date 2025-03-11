@@ -18,6 +18,7 @@ import { AddEmployeeComponent } from '../../component/add-employee/add-employee.
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { TransformedEmployeeRewards } from '../../model/employee.type';
+import { EmployeeDetailsComponent } from '../../component/employee-details/employee-details.component';
 
 /**
  * @title Table with pagination
@@ -52,6 +53,23 @@ export class EmployeeListComponent implements OnInit {
   readonly animal = signal('');
   readonly name = model('');
   readonly dialog = inject(MatDialog);
+  readonly detailsDialog = inject(MatDialog);
+
+  showDetails(item: TransformedEmployeeRewards): void {
+    const detailsDialogRef = this.detailsDialog.open(EmployeeDetailsComponent, {
+      data: {
+        name: item.employeeName,
+        email: item.email,
+        rewards: item.rewards,
+      },
+    });
+    detailsDialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed', result);
+      if (result !== undefined) {
+        console.log(result);
+      }
+    });
+  }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(AddEmployeeComponent, {
@@ -67,20 +85,6 @@ export class EmployeeListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.employeeService
-    //   .getTodod()
-    //   .pipe(
-    //     catchError((err) => {
-    //       console.log(err);
-    //       return of([]);
-    //     })
-    //   )
-    //   .subscribe((list) => {
-    //     this.dataSource = new MatTableDataSource<Todo>(list);
-    //     this.dataSource.paginator = this.paginator;
-    //     console.log(list);
-    //   });
-
     this.employeeService
       .getEmployeeList()
       .pipe(
@@ -98,20 +102,6 @@ export class EmployeeListComponent implements OnInit {
         this.dataSource.paginator = this.paginator;
       });
   }
-
-  // ngOnInit(): void {
-  //   this.employeeService
-  //     .getEmployeeList()
-  //     .pipe(
-  //       catchError((err) => {
-  //         console.log(err);
-  //         return of([]);
-  //       })
-  //     )
-  //     .subscribe((list) => {
-  //       console.log(list);
-  //     });
-  // }
 }
 
 interface Todo {

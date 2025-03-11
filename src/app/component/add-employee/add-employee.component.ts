@@ -12,6 +12,7 @@ import {
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { Reward } from '../../model/employee.type';
 
 @Component({
   selector: 'app-add-employee',
@@ -42,4 +43,6 @@ export class AddEmployeeComponent {
 export interface DialogData {
   animal: string;
   name: string;
+  email: string;
+  rewards: Reward[];
 }
