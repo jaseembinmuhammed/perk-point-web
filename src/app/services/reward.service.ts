@@ -27,4 +27,9 @@ export class RewardService {
     const url = 'http://localhost:8080/perkpoint/api/v1/reward';
     return this.http.post<Reward>(url, payload);
   }
+
+  deleteReward(payload: number) {
+    const url = 'http://localhost:8080/perkpoint/api/v1/reward/' + payload;
+    return this.http.delete<Reward>(url);
+  }
 }

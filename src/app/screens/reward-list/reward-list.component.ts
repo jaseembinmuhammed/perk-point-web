@@ -12,6 +12,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { CommonModule } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateRewardComponent } from '../../component/create-reward/create-reward.component';
+import { DeleteRewardComponent } from '../../components/delete-reward/delete-reward.component';
 
 @Component({
   selector: 'app-reward-list',
@@ -34,6 +35,8 @@ export class RewardListComponent implements OnInit {
   private _snackBar = inject(MatSnackBar);
 
   readonly creareRewardDialog = inject(MatDialog);
+  readonly deleteRewardDialog = inject(MatDialog);
+
   rewardService = inject(RewardService);
   loading = false;
 
@@ -75,7 +78,20 @@ export class RewardListComponent implements OnInit {
     });
   }
 
-  onDelete(item: Reward) {}
+  onDelete(item: Reward) {
+    const deleteRewardDialogRef = this.deleteRewardDialog.open(
+      DeleteRewardComponent,
+      { data: item }
+    );
+    deleteRewardDialogRef.afterClosed().subscribe((result: Reward) => {
+      if (result !== undefined && result?.id) {
+        console.log('deleted', result);
+        const tableData = [...this.dataSource.data];
+        let filteredData = tableData.filter((row) => row.id != result.id);
+        this.dataSource.data = filteredData;
+      }
+    });
+  }
 
   onEdit(item: Reward) {}
 }
