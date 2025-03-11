@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { AssignRewardResponse, KeyValue } from '../model/employee.type';
+import { AssignRewardResponse, KeyValue, Reward } from '../model/employee.type';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +14,17 @@ export class RewardService {
   }
 
   getRewards() {
-    const url = 'http://localhost:8080/perkpoint/api/v1/reward';
+    const url = 'http://localhost:8080/perkpoint/api/v1/reward/keyValues';
     return this.http.get<Array<KeyValue>>(url);
+  }
+
+  getRewardsWithDetails() {
+    const url = 'http://localhost:8080/perkpoint/api/v1/reward';
+    return this.http.get<Array<Reward>>(url);
+  }
+
+  createReward(payload: any) {
+    const url = 'http://localhost:8080/perkpoint/api/v1/reward';
+    return this.http.post<Reward>(url, payload);
   }
 }

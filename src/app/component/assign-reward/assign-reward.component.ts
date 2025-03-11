@@ -42,7 +42,6 @@ import { MatSelectModule } from '@angular/material/select';
     MatDialogClose,
     MatProgressBarModule,
     ReactiveFormsModule,
-
     MatSelectModule,
   ],
   templateUrl: './assign-reward.component.html',
@@ -69,8 +68,6 @@ export class AssignRewardComponent implements OnInit {
   loading = false;
   rewards = new FormControl('');
   rewardList: any = [];
-
-  education_level = '';
 
   onSubmit() {
     this.loading = true;

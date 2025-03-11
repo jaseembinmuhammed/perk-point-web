@@ -1,0 +1,23 @@
+<h1 mat-dialog-title class="title">Create Reward</h1>
+@if (loading) {
+<mat-progress-bar mode="indeterminate"></mat-progress-bar>
+}
+<mat-dialog-content class="mat-typography">
+  <form class="example-form" [formGroup]="rewardForm">
+    <!-- Emp Name -->
+    <mat-form-field class="example-full-width test-class" appearance="outline">
+      <mat-label>Reward Name</mat-label>
+      <input matInput formControlName="name" placeholder="Enter the name" />
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close [disabled]="loading">CANCEL</button>
+  <button
+    mat-button
+    (click)="onSubmit()"
+    [disabled]="loading || rewardForm.invalid"
+  >
+    SUBMIT
+  </button>
+</mat-dialog-actions>

@@ -1,1 +1,62 @@
-<p>reward-list works!</p>
+<div class="example-container mat-elevation-z8">
+  <div class="table-container">
+    <table mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="rewardName">
+        <th mat-header-cell *matHeaderCellDef>REWARD NAME</th>
+        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="createdOn">
+        <th mat-header-cell *matHeaderCellDef>CREATED ON</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.createdAt | date : "d MMMM y" }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef>DELETE</th>
+        <td mat-cell *matCellDef="let element">
+          @if (!element.rewarded) {
+          <button
+            mat-icon-button
+            aria-label="Example icon-button with a menu"
+            (click)="onDelete(element)"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+          }
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="edit">
+        <th mat-header-cell *matHeaderCellDef>EDIT</th>
+        <td mat-cell *matCellDef="let element">
+          <button
+            mat-icon-button
+            aria-label="Example icon-button with a menu"
+            (click)="onEdit(element)"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+  <div class="paginator-container">
+    <div
+      class="button"
+      matTooltip="Create New Employee"
+      (click)="createReward()"
+    >
+      New Reward
+    </div>
+    <mat-paginator
+      [pageSizeOptions]="[10, 20, 30]"
+      aria-label="Select page of periodic elements"
+    >
+    </mat-paginator>
+  </div>
+</div>
