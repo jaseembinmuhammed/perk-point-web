@@ -24,6 +24,7 @@ import {
 import { EmployeeDetailsComponent } from '../../component/employee-details/employee-details.component';
 import { AssignRewardComponent } from '../../component/assign-reward/assign-reward.component';
 import { DeleteEmployeeComponent } from '../../component/delete-employee/delete-employee.component';
+import { UpdateEmployeeComponent } from '../../component/update-employee/update-employee.component';
 
 /**
  * @title Table with pagination
@@ -60,6 +61,7 @@ export class EmployeeListComponent implements OnInit {
   readonly detailsDialog = inject(MatDialog);
   readonly assignRewardDialog = inject(MatDialog);
   readonly deleteEmployeeDialog = inject(MatDialog);
+  readonly updateEmployeeDialog = inject(MatDialog);
 
   showDetails(item: TransformedEmployeeRewards): void {
     const detailsDialogRef = this.detailsDialog.open(EmployeeDetailsComponent, {
@@ -157,5 +159,30 @@ export class EmployeeListComponent implements OnInit {
         let filteredData = tableData.filter((row) => row.empId != result.empId);
         this.dataSource.data = filteredData;
       });
+  }
+
+  onUpdate(item: TransformedEmployeeRewards): void {
+    const updateEmployeeDialogRef = this.updateEmployeeDialog.open(
+      UpdateEmployeeComponent,
+      { data: item }
+    );
+    updateEmployeeDialogRef.afterClosed().subscribe((result: Employee) => {
+      const editedEmpId = result?.id;
+      debugger;
+      if (editedEmpId) {
+        const tableData = [...this.dataSource.data];
+        let updatedTableData = tableData.map(
+          (row: TransformedEmployeeRewards) => {
+            if (row.empId === editedEmpId) {
+              row.employeeName = result.name;
+              row.department = result.department;
+              return row;
+            }
+            return row;
+          }
+        );
+        this.dataSource.data = [...updatedTableData];
+      }
+    });
   }
 }

@@ -12,6 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { EmployeeService } from '../../services/employee.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { catchError, finalize, throwError } from 'rxjs';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @Component({
   selector: 'app-delete-employee',
@@ -21,6 +22,7 @@ import { catchError, finalize, throwError } from 'rxjs';
     MatDialogClose,
     MatDialogTitle,
     MatDialogContent,
+    MatProgressBarModule,
   ],
   templateUrl: './delete-employee.component.html',
   styleUrl: './delete-employee.component.scss',
