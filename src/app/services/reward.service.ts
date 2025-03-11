@@ -18,6 +18,12 @@ export class RewardService {
     return this.http.get<Array<KeyValue>>(url);
   }
 
+  getMyRewards() {
+    const url =
+      'http://localhost:8080/perkpoint/api/v1/employeeReward/myRewards';
+    return this.http.get<Array<Reward>>(url);
+  }
+
   getRewardsWithDetails() {
     const url = 'http://localhost:8080/perkpoint/api/v1/reward';
     return this.http.get<Array<Reward>>(url);
