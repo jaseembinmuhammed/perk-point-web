@@ -10,8 +10,13 @@ import { LoginGuard } from './guard/login.guard';
 export const routes: Routes = [
   {
     path: '',
+    component: LoginComponent,
+    // canActivate: [LoginGuard],
+  },
+  {
+    path: 'app_layout',
     component: LayoutComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
     children: [
       {
         path: 'employees',
@@ -22,10 +27,5 @@ export const routes: Routes = [
         component: RewardListComponent,
       },
     ],
-  },
-  {
-    path: 'login',
-    component: LoginComponent,
-    canActivate: [LoginGuard],
   },
 ];

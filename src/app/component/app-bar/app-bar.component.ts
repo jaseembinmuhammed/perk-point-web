@@ -13,6 +13,6 @@ export class AppBarComponent {
   constructor(private router: Router) {}
 
   onLogout() {
-    this.router.navigate(['/login']);
+    this.router.navigate(['/']);
   }
 }
