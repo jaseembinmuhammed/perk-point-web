@@ -17,7 +17,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddEmployeeComponent } from '../../component/add-employee/add-employee.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
-import { TransformedEmployeeRewards } from '../../model/employee.type';
+import {
+  Employee,
+  TransformedEmployeeRewards,
+} from '../../model/employee.type';
 import { EmployeeDetailsComponent } from '../../component/employee-details/employee-details.component';
 
 /**
@@ -75,12 +78,18 @@ export class EmployeeListComponent implements OnInit {
     const dialogRef = this.dialog.open(AddEmployeeComponent, {
       data: { name: this.name(), animal: this.animal() },
     });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed', result);
-      if (result !== undefined) {
-        this.animal.set(result);
-      }
+    dialogRef.afterClosed().subscribe((result: Employee) => {
+      let item: TransformedEmployeeRewards = {
+        empId: result.id,
+        employeeName: result.name,
+        department: result.department,
+        email: result.email,
+        numberOfRewards: 0,
+        rewards: [],
+      };
+      const updatedData = this.dataSource.data;
+      updatedData.push(item);
+      this.dataSource.data = [...updatedData];
     });
   }
 
@@ -96,6 +105,8 @@ export class EmployeeListComponent implements OnInit {
       .subscribe((list) => {
         let transformedData: TransformedEmployeeRewards[] =
           this.employeeService.TransformData(list);
+
+        console.log(JSON.stringify(transformedData[0]));
         this.dataSource = new MatTableDataSource<TransformedEmployeeRewards>(
           transformedData
         );

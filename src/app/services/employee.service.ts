@@ -1,5 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import {
+  Employee,
   EmployeeRewards,
   Todo,
   TransformedEmployeeRewards,
@@ -20,6 +21,11 @@ export class EmployeeService {
   getEmployeeList() {
     const url = 'http://localhost:8080/perkpoint/api/v1/employeeReward';
     return this.http.get<Array<EmployeeRewards>>(url);
+  }
+
+  createEmployee(payload: any) {
+    const url = 'http://localhost:8080/perkpoint/api/v1/employee';
+    return this.http.post<Employee>(url, payload);
   }
 
   TransformData(
