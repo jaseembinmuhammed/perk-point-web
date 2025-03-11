@@ -1,0 +1,47 @@
+.example-container {
+  height: 88vh;
+  padding: 5px;
+  border-width: 1px;
+  border-color: rgb(227, 227, 227);
+  border-radius: 10px;
+  margin-right: 20px;
+  margin-left: 20px;
+  overflow: auto;
+
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(4, 1fr); /* Default: 4 columns */
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.card h4 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* Responsive Grid Breakpoints */
+@media (max-width: 1024px) {
+  .example-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .example-container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

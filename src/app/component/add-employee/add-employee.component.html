@@ -1,0 +1,47 @@
+<h1 mat-dialog-title class="title">CREATE NEW EMPLOYEE</h1>
+@if (loading) {
+<mat-progress-bar mode="indeterminate"></mat-progress-bar>
+}
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="employeeForm" class="example-form">
+    <!-- Emp Name -->
+    <mat-form-field class="example-full-width test-class" appearance="outline">
+      <mat-label>Employee Name</mat-label>
+      <input matInput formControlName="name" placeholder="Enter the name" />
+    </mat-form-field>
+    <!-- Department -->
+    <mat-form-field class="example-full-width test-class" appearance="outline">
+      <mat-label>Department</mat-label>
+      <input
+        matInput
+        formControlName="department"
+        placeholder="Enter the department name"
+      />
+    </mat-form-field>
+    <!-- Mail -->
+    <mat-form-field class="example-full-width test-class" appearance="outline">
+      <mat-label>Mail ID</mat-label>
+      <input matInput formControlName="mail" placeholder="Enter the Mail ID" />
+    </mat-form-field>
+
+    <!-- Password -->
+    <mat-form-field class="example-full-width test-class" appearance="outline">
+      <mat-label>Password</mat-label>
+      <input
+        matInput
+        formControlName="password"
+        placeholder="Enter the Password"
+      />
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close [disabled]="loading">CANCEL</button>
+  <button
+    mat-button
+    (click)="onSubmit()"
+    [disabled]="loading || employeeForm.invalid"
+  >
+    SUBMIT
+  </button>
+</mat-dialog-actions>

@@ -1,0 +1,37 @@
+<div class="header-container">
+  <header class="header">
+    <h1>PERKPOINT</h1>
+  </header>
+  <div class="header-right">
+    @if (showEmployeeMenu) {
+    <div
+      routerLinkActive="menu-button-active"
+      class="menu-button"
+      routerLink="/app_layout/my_rewards"
+    >
+      <h1 class="menu">My Rewards</h1>
+    </div>
+    } @if (showAdminMenu) {
+    <div
+      routerLinkActive="menu-button-active"
+      class="menu-button"
+      routerLink="/app_layout/employees"
+      matTooltip="Open Employees Screen"
+    >
+      <h1 class="menu">Employees</h1>
+    </div>
+    <div
+      routerLinkActive="menu-button-active"
+      class="menu-button"
+      routerLink="/app_layout/rewards"
+      matTooltip="Open Rewards Screen"
+    >
+      <h1 class="menu">Rewards</h1>
+    </div>
+    }
+
+    <div class="logout" (click)="onLogout()" matTooltip="Logout">
+      <mat-icon fontIcon="logout"></mat-icon>
+    </div>
+  </div>
+</div>

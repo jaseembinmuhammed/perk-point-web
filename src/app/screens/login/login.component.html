@@ -1,0 +1,36 @@
+<div class="container">
+  <header class="header">
+    <h1>PERKPOINT</h1>
+  </header>
+  <form [formGroup]="loginForm" class="example-form">
+    <!-- Username -->
+    <mat-form-field class="example-full-width test-class" appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" placeholder="Enter the email" />
+      <mat-icon matPrefix class="icon">person_outline</mat-icon>
+    </mat-form-field>
+    <!-- Password -->
+    <mat-form-field class="example-full-width test-class" appearance="outline">
+      <mat-label>Password</mat-label>
+      <input
+        matInput
+        formControlName="password"
+        [type]="hide ? 'password' : 'text'"
+        placeholder="Enter the password"
+      />
+      <mat-icon matPrefix class="icon">lock_outline</mat-icon>
+      <mat-icon matSuffix (click)="hide = !hide">
+        {{ hide ? "visibility_off" : "visibility" }}
+      </mat-icon>
+    </mat-form-field>
+  </form>
+
+  <button
+    mat-flat-button
+    class="button"
+    [disabled]="loading || loginForm.invalid"
+    (click)="onSubmit()"
+  >
+    {{ loading ? "LOGGING IN..." : "LOGIN" }}
+  </button>
+</div>

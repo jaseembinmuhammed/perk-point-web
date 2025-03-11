@@ -1,0 +1,33 @@
+.title {
+  //   color: red;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.example-form {
+  min-width: 100px;
+  // max-width: 350px;
+  width: 100%;
+  padding-top: 5px;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+::ng-deep
+  .mdc-text-field--outlined
+  .mdc-notched-outline
+  .mdc-notched-outline__leading {
+  border-top-left-radius: var(--mdc-shape-small, 10px) !important;
+  border-bottom-left-radius: var(--mdc-shape-small, 10px) !important;
+}
+
+// change input right side border-radius
+::ng-deep
+  .mdc-text-field--outlined
+  .mdc-notched-outline
+  .mdc-notched-outline__trailing {
+  border-top-right-radius: var(--mdc-shape-small, 10px) !important;
+  border-bottom-right-radius: var(--mdc-shape-small, 10px) !important;
+}
