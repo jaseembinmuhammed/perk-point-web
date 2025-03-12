@@ -21,6 +21,13 @@ export class AppBarComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
+  openSwagger() {
+    window.open(
+      'http://localhost:8080/perkpoint/api/swagger-ui/index.html#/',
+      '_blank'
+    );
+  }
+
   ngOnInit(): void {
     const authData = localStorage.getItem('authToken');
     if (authData) {
