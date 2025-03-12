@@ -1,6 +1,9 @@
 <div class="header-container">
   <header class="header">
     <h1>PERKPOINT</h1>
+    @if (showAdminMenu) {
+    <div class="menu-button swager" (click)="openSwagger()">API DOC</div>
+    }
   </header>
   <div class="header-right">
     @if (showEmployeeMenu) {

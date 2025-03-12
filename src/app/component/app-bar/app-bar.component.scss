@@ -1,16 +1,4 @@
-.container {
-  display: flex;
-  flex-direction: column;
-  height: 100vh; /* Full viewport height */
-  width: 100vw;
-  // justify-content: center;
-  // align-items: center;
-  background-color: #ffffff;
-}
-
 .header-container {
-  // background-color: red;
-  // margin: 20px;
   height: 10vh;
   display: flex;
   align-items: center;
@@ -22,7 +10,12 @@
 
 .header {
   text-align: center;
-  // margin-bottom: 20px;
+  display: flex;
+  gap: 30px;
+}
+
+.swager {
+  background-color: green;
 }
 
 .header h1 {
@@ -34,7 +27,6 @@
 
 .header-right {
   display: flex;
-  // background-color: red;
   align-items: center;
   gap: 10px;
 }
@@ -83,4 +75,41 @@
   width: 40px;
   border-radius: 25px;
   cursor: pointer;
+}
+
+.swager {
+  background-color: rgb(255, 255, 255);
+  border-style: solid;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #144e26;
+  border-color: #003e59;
+}
+
+@media (max-width: 600px) {
+  .header-container {
+    justify-content: center;
+  }
+  .header {
+    display: none;
+  }
+  .menu-button {
+    height: 30px;
+    min-width: 100px;
+  }
+  .menu-button .menu {
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .menu-button-active .menu {
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .logout {
+    height: 30px;
+    width: 30px;
+  }
 }
