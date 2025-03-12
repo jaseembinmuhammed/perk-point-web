@@ -2,7 +2,7 @@
   @for (item of rewardList; track item.id) {
   <div class="card">
     <h4>{{ item.name }}</h4>
-    <p>Awarded Time : {{ item.rewardedTime | date : "d MMMM y" }}</p>
+    <p>Awarded On : {{ item.rewardedTime | date : "d MMMM y" }}</p>
   </div>
   }
 </div>
